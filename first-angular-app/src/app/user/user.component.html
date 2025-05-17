@@ -1,3 +1,15 @@
 <div>
-  <button><img src="" alt="" /> <span>Name</span></button>
+  <button>
+    <!-- property binding from ts to template, happended with [] with src -->
+    <img
+      [src]="'assets/users/' + selectedUser.avatar"
+      [alt]="selectedUser.name"
+    />
+    <!-- string interpolation binding from ts to template -->
+    <span>{{ selectedUser.name }}</span>
+  </button>
 </div>
+
+<!-- While it might look like you're binding the src attribute of the <img> tag,
+ you're actually NOT doing that.
+ Instead, property binding targets the underlying DOM object property (which, in this case, also happens to be called src) and binds to that. -->
