@@ -43,3 +43,11 @@ It looks like this:
 By adding `attr.` in front of the attribute name, you’re telling Angular **not** to look for a property with that name, but instead to bind directly to the **attribute**.
 
 In the example above, the `aria-valuenow` and `aria-valuemax` attributes are bound dynamically.
+
+# Difference between attributes and properties
+
+https://jakearchibald.com/2024/attributes-vs-properties/
+
+# Change detection in angular uses zone.js internally
+
+![alt text](image-1.png)
