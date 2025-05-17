@@ -89,3 +89,16 @@ function insertAtBegginingWithGenerics<T>(array: T[], value: T){
 } // this function takes an array of type T and a value of type T and returns an array of type T
 const demoArray2 = [1, 2, 3];
 const updatedArray2 = insertAtBegginingWithGenerics(demoArray2, -1); // this will not throw an error because we are passing a number to the function
+
+// function identity<Type>(arg: Type): Type {
+//   return arg;
+// }
+
+// We’ve now added a type variable Type to the identity function. This Type allows us to capture the type the user provides (e.g. number), 
+// so that we can use that information later. Here, we use Type again as the return type. On inspection, 
+// we can now see the same type is used for the argument and the return type.
+// This allows us to traffic that type information in one side of the function and out the other.
+
+// We say that this version of the identity function is generic, as it works over a range of types.
+// Unlike using any, it’s also just as precise (i.e., it doesn’t lose any information) as the first identity function that
+//  used numbers for the argument and return type.
