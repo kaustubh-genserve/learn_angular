@@ -3,9 +3,9 @@
   <button (click)="onSelectUser()">
     <!-- property binding from ts to template, happended with [] with src -->
     <!-- we are using a getter names imagePath defined in ts logic to compute the file path and paste here insted of a sting poperation in HTML file -->
-    <img [src]="imagePath" [alt]="selectedUser.name" />
+    <img [src]="imagePath()" [alt]="selectedUser().name" />
     <!-- string interpolation binding from ts to template -->
-    <span>{{ selectedUser.name }}</span>
+    <span>{{ selectedUser().name }}</span>
   </button>
 </div>
 

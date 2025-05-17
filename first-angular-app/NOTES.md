@@ -51,3 +51,33 @@ https://jakearchibald.com/2024/attributes-vs-properties/
 # Change detection in angular uses zone.js internally
 
 ![alt text](image-1.png)
+
+# Signals
+
+![alt text](image-2.png)
+
+First we set the signals using signal function from angular core
+e.g. `electedUser = signal(DUMMY_USERS[randomIndex]);`
+
+Then when we want to update the signal valuev we use set function e.g.
+
+```
+onSelectUser() {
+    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+    this.selectedUser.set(DUMMY_USERS[randomIndex]);
+  }
+```
+
+When we want to RETIRVE VALVE OF A LIVE SIGNAL IN TS i.e. we need to compute stuff on signal we use compute from the angular core library
+` imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar);`
+
+NOW IN HTML, we use round bracket () to give subscription of signal to the html and incase needed to have attributed use . dot function
+
+```
+<div>
+  <button (click)="onSelectUser()">
+    <img [src]="imagePath()" [alt]="selectedUser().name" />
+    <span>{{ selectedUser().name }}</span>
+  </button>
+</div>
+```
