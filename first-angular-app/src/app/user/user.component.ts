@@ -11,17 +11,7 @@ import {
 // import { Component, computed, signal } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
-// type User = {
-//   id: string;
-//   name: string;
-//   avatar: string;
-// };
-
-interface User {
-  id: string;
-  name: string;
-  avatar: string;
-}
+import { User } from './user.model';
 
 // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 // Math.random() returns a random number between 0 and 1
@@ -47,6 +37,8 @@ interface User {
 //  In our case, we are going to output the id of the user that we have selected
 export class UserComponent {
   @Input({ required: true }) user!: User;
+
+  @Input({ required: true }) selected!: boolean;
 
   @Output() select = new EventEmitter<string>();
 
