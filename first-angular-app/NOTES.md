@@ -81,3 +81,84 @@ NOW IN HTML, we use round bracket () to give subscription of signal to the html 
   </button>
 </div>
 ```
+
+# How to pass information between components ?
+
+1.  From using app.html,we can give parameters to child components using [name] and then use @Input in child components to get that value.
+    e.g.
+    ```
+    <app-task [name]="selectedUser!.name"></app-task>
+    ```
+    then inside app tasks.ts
+    e.g.
+
+```
+    export class TaskComponent
+    {
+    @Input({ required: true }) name!: string;
+    }
+
+```
+
+When to use get/getter in AngularJS ?
+
+## When to use `get`/getter in Angular?
+
+In Angular, use a getter (the `get` keyword) when you want to expose a computed, read-only property to your template or other code, without calling it like a function. Getters are especially useful for:
+
+- **Computed values:** When a value depends on other properties and should be calculated dynamically.
+- **Template binding:** So you can use `{{ propertyName }}` or `[property]="propertyName"` in your template, instead of `propertyName()`.
+
+### Example 1: Getter for a computed property
+
+**Component:**
+
+```typescript
+export class UserComponent {
+  firstName = "Jane";
+  lastName = "Doe";
+
+  get fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+```
+
+**Template:**
+
+```html
+<p>{{ fullName }}</p>
+```
+
+### Example 2: Getter for conditional logic
+
+**Component:**
+
+```typescript
+export class TaskComponent {
+  isComplete = false;
+
+  get status(): string {
+    return this.isComplete ? "Done" : "Pending";
+  }
+}
+```
+
+**Template:**
+
+```html
+<span>{{ status }}</span>
+```
+
+### When to use a getter
+
+- When you want to expose a value to the template that is derived from other properties.
+- When you want to encapsulate logic for a property without requiring a method call in the template.
+
+### When **not** to use a getter
+
+- If the computation is expensive and runs often (getters are called on every change detection cycle).
+- If you need to perform side effects (getters should be pure).
+
+**Summary:**  
+Use `get` in Angular for computed, read-only properties you want to use in templates as if they were simple properties.
