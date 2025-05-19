@@ -34,23 +34,46 @@ import { DUMMY_USERS } from '../dummy-users';
 // We set Output devorator with the EventEmitter import from angular core when we want to output the valuve of some reaction to the browser
 //  In our case, we are going to output the id of the user that we have selected
 export class UserComponent {
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
-  @Input({ required: true }) id!: string;
+  @Input({ required: true }) user!: {
+    id: string;
+    name: string;
+    avatar: string;
+  };
 
   @Output() select = new EventEmitter<string>();
 
   get imagePath() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
 
   onSelectUser() {
     // we created a select output property
     // and we are going to emit the id of the user that we have selected
     // This is going to be used in the app.component.ts file
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
   }
 }
+
+// We set Output devorator with the EventEmitter import from angular core when we want to output the valuve of some reaction to the browser
+//  In our case, we are going to output the id of the user that we have selected
+// export class UserComponent {
+//   @Input({ required: true }) avatar!: string;
+//   @Input({ required: true }) name!: string;
+//   @Input({ required: true }) id!: string;
+
+//   @Output() select = new EventEmitter<string>();
+
+//   get imagePath() {
+//     return 'assets/users/' + this.avatar;
+//   }
+
+//   onSelectUser() {
+//     // we created a select output property
+//     // and we are going to emit the id of the user that we have selected
+//     // This is going to be used in the app.component.ts file
+//     this.select.emit(this.id);
+//   }
+// }
 
 // SIGNAL INPUT ( Using input wil small i
 // input is a generic TS type that is used to create a signal
