@@ -11,6 +11,18 @@ import {
 // import { Component, computed, signal } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
+// type User = {
+//   id: string;
+//   name: string;
+//   avatar: string;
+// };
+
+interface User {
+  id: string;
+  name: string;
+  avatar: string;
+}
+
 // const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 // Math.random() returns a random number between 0 and 1
 // Math.floor() rounds down to the nearest integer
@@ -34,11 +46,7 @@ import { DUMMY_USERS } from '../dummy-users';
 // We set Output devorator with the EventEmitter import from angular core when we want to output the valuve of some reaction to the browser
 //  In our case, we are going to output the id of the user that we have selected
 export class UserComponent {
-  @Input({ required: true }) user!: {
-    id: string;
-    name: string;
-    avatar: string;
-  };
+  @Input({ required: true }) user!: User;
 
   @Output() select = new EventEmitter<string>();
 
