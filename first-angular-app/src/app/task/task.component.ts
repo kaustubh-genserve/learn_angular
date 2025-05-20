@@ -1,14 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { TasksComponent } from './tasks/tasks.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [TasksComponent],
+  imports: [TasksComponent, AddTaskComponent],
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
 })
 export class TaskComponent {
+  addTaskVisible = false;
+
   @Input({ required: true }) name!: string;
   @Input({ required: true }) userId!: string;
 
@@ -39,11 +42,22 @@ export class TaskComponent {
   ];
 
   // What the fuck is this ?
+  // Why does this work without an input field/argument ??
+  // In TypeScript and JavaScript, a getter allows you to define a property-like method that can access other properties of the class directly using `this`.
+
   get selectedUserTasks() {
     return this.tasks.filter((task) => task.userId === this.userId);
   }
 
   onCompleteTask(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
+  }
+
+  onStartAddTask() {
+    this.addTaskVisible = true;
+  }
+
+  onEndAddTask() {
+    this.addTaskVisible = false;
   }
 }

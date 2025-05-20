@@ -162,3 +162,106 @@ export class TaskComponent {
 
 **Summary:**  
 Use `get` in Angular for computed, read-only properties you want to use in templates as if they were simple properties.
+
+# Filter method in Conditional Output of stuff :
+
+View Task component from implementation of conditional output.
+
+The `.filter()` method creates a new array with only the items that match a condition.
+
+**Example:**  
+Suppose you have this array:
+
+```typescript
+const numbers = [1, 2, 3, 4, 5];
+const evenNumbers = numbers.filter((num) => num % 2 === 0);
+// evenNumbers is [2, 4]
+```
+
+- `numbers.filter(num => num % 2 === 0)` checks each number.
+- If the number is even (`num % 2 === 0`), it is kept in the new array.
+
+**In your code:**
+
+```typescript
+this.tasks.filter((task) => task.userId === this.userId);
+```
+
+- Goes through each task in `this.tasks`.
+- Keeps only the tasks where `task.userId` matches `this.userId`.
+- Returns a new array with just those tasks.
+
+# Guide: Conditional Display of Content in Angular Templates
+
+1. Purpose
+   Conditional display lets you show or hide parts of your UI based on certain conditions, such as whether a user is selected or data is available.
+
+2. Using the @if Directive (Angular 17+)
+   Angular 17 introduced the @if directive for cleaner, more readable conditional rendering.
+
+Syntax:
+
+```
+@if (condition) {
+  <!-- Content to show if condition is true -->
+} @else {
+  <!-- Content to show if condition is false -->
+}
+```
+
+3. Example: Displaying Content Based on User Selection
+   Suppose you want to show a task list only when a user is selected, and a message otherwise:
+
+```
+@if (selectedUser) {
+  <app-task
+    [userId]="selectedUser.id"
+    [name]="selectedUser.name"
+  ></app-task>
+} @else {
+  <p id="fallback">Click on a user to see their tasks</p>
+}
+```
+
+If selectedUser exists:
+The <app-task> component is shown, receiving the selected user's data as inputs.
+If selectedUser does not exist:
+A fallback message is displayed.
+
+4. When to Use
+   To show/hide components, messages, or sections based on user actions or data availability.
+   To provide feedback or instructions when required data is missing.
+
+5. Tips
+   Use @if for clear, block-based conditional rendering.
+   For older Angular versions, use \*ngIf instead.
+   Keep your conditions simple for readability.
+
+6. Reference
+   Angular Documentation: Built-in Control Flow
+
+Summary:
+
+Use the @if directive to conditionally display content in your Angular templates, making your UI dynamic and responsive to user interaction or data changes.
+
+# Why does this work without an input field/argument ??
+
+```
+  get selectedUserTasks() {
+    return this.tasks.filter((task) => task.userId === this.userId);
+  }
+```
+
+The `selectedUserTasks` function works without an input argument because it is defined as a **getter** (using the `get` keyword) inside the `TaskComponent` class.
+
+### In TypeScript and JavaScript, a getter allows you to define a property-like method that can access other properties of the class directly using `this`.
+
+Here’s how it works:
+
+- **No input argument needed:**  
+  The getter uses `this.tasks` and `this.userId`, which are already properties of the class. It doesn’t need any external input because it gets all the data it needs from within the component instance.
+
+- **How it ties with the getter:**  
+  By using the `get` keyword, you can access `selectedUserTasks` as if it were a property (e.g., `component.selectedUserTasks`), not a method (no parentheses needed). Each time you access it, the getter runs the filter logic and returns the current list of tasks for the selected user.
+
+This makes your code cleaner and ensures the filtered tasks are always up to date with the current state of the component.
