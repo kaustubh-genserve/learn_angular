@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { TasksComponent } from './tasks/tasks.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { NewTaskData } from './tasks/tasks.model';
 
 @Component({
   selector: 'app-task',
@@ -58,6 +59,18 @@ export class TaskComponent {
   }
 
   onEndAddTask() {
+    this.addTaskVisible = false;
+  }
+
+  // This method is called when a new task is added and called when the form is submitted from add-task.component.ts
+  onAddNewTask(taskData: NewTaskData) {
+    this.tasks.push({
+      id: new Date().getTime().toString(),
+      userId: this.userId,
+      title: taskData.title,
+      summary: taskData.summary,
+      dueDate: taskData.dueDate,
+    });
     this.addTaskVisible = false;
   }
 }

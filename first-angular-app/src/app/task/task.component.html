@@ -6,8 +6,12 @@
     <button (click)="onStartAddTask()">Add Task</button>
   </menu>
 
+  <!-- add event listener is for form submission -->
   @if (addTaskVisible) {
-  <app-add-task (isAddTaskVisible)="onEndAddTask()"></app-add-task>
+  <app-add-task
+    (isAddTaskVisible)="onEndAddTask()"
+    (add)="onAddNewTask($event)"
+  ></app-add-task>
   }
 
   <ul>
