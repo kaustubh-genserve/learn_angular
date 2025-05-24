@@ -1,4 +1,4 @@
-<div>
+<app-card>
   <!-- Adding eventlistener from angular using () and attching to ts file -->
   <button [class.active]="selected" (click)="onSelectUser()">
     <!-- property binding from ts to template, happended with [] with src -->
@@ -7,7 +7,7 @@
     <!-- string interpolation binding from ts to template -->
     <span>{{ user.name }}</span>
   </button>
-</div>
+</app-card>
 
 <!-- While it might look like you're binding the src attribute of the <img> tag,
  you're actually NOT doing that.
