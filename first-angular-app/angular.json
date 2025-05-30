@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "first-angular-app": {
+    "essentials-practice": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/first-angular-app",
+            "outputPath": "dist/essentials-practice",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -21,8 +21,6 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -38,13 +36,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "outputHashing": "all"
@@ -61,16 +59,19 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "first-angular-app:build:production"
+              "buildTarget": "essentials-practice:build:production"
             },
             "development": {
-              "buildTarget": "first-angular-app:build:development"
+              "buildTarget": "essentials-practice:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "essentials-practice:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -96,6 +97,6 @@
     }
   },
   "cli": {
-    "analytics": "0ceca46e-a588-4fa2-ae89-32728bda2946"
+    "analytics": "7c095473-e601-4306-a48e-76fd61de5dc1"
   }
 }
